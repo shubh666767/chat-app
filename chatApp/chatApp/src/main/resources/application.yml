@@ -1,0 +1,20 @@
+server:
+ port: 5500
+ 
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # Corrected package name
+
+    consumer:
+      bootstrap-servers: localhost:29092
+      group-id: kafka-spring-demo
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # Use deserializer for consumers
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.chat.app.chatApp.dto
