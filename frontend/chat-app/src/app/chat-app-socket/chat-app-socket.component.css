@@ -1,0 +1,56 @@
+.chat-message {
+    margin-bottom: 20px; /* Add more space between chat messages */
+  }
+  
+  .message-container {
+    background-color: #f2f2f2; /* Light background color */
+    padding: 15px; /* Increase padding for message container */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
+  .sender, .receiver, .content, .timestamp {
+    display: block;
+    margin-bottom: 10px; /* Add space between message elements */
+    font-size: 16px; /* Increase font size for better readability */
+    font-family: Arial, sans-serif; /* Use a common sans-serif font */
+    color: #333; /* Darken text color for better contrast */
+  }
+  
+  .timestamp {
+    font-size: 14px; /* Reduce font size for timestamp */
+    color: #888; /* Light gray color for timestamp */
+  }
+  
+  
+
+  .chat-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Add margin at the bottom for spacing */
+  }
+  
+  .chat-input {
+    flex: 1; /* Take up remaining space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: #45a049; /* Darker shade on hover */
+  }
+  

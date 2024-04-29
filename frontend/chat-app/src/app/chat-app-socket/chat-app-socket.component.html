@@ -1,5 +1,15 @@
-<div>
-    <input [(ngModel)]="chatInput">
-    <button (click)="sendDataToServer()">send</button>
+<div class="chat-input-container">
+  <input class="chat-input" type="text" [(ngModel)]="chatInput" placeholder="Type your message here...">
+  <button class="send-button" (click)="sendDataToServer()">Send</button>
+</div>
+
+
+<div *ngFor="let chat of chatMessageList" class="chat-message">
+  <div *ngIf="chat" class="message-container">
+    <span class="sender">Sender: {{chat.sender}}</span>
+    <span class="receiver">Receiver: {{chat.receiver}}</span>
+    <span class="content">Content: {{chat.content}}</span>
+    <span class="timestamp">Timestamp: {{chat.timestamp | date:'medium'}}</span>
   </div>
-  
+</div>
+

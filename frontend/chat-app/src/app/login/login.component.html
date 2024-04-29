@@ -1,2 +1,6 @@
-Enter your name: <input [(ngModel)]="name">
-<button (click)="sendDataToChat()">login</button>
+<div class="login-container">
+    <label for="name" class="input-label">Enter your name:</label>
+    <input id="name" type="text" class="name-input" [(ngModel)]="name">
+    <button class="login-button" (click)="sendDataToChat()">Login</button>
+  </div>
+  

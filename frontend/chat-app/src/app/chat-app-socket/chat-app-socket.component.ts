@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from '../web-socket.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatMessage } from '../model/chatMessage';
+import { ChatService } from '../service/chat.service';
 
 @Component({
   selector: 'app-chat-app-socket',
@@ -11,9 +12,12 @@ import { ChatMessage } from '../model/chatMessage';
 export class ChatAppSocketComponent implements OnInit {
   chatInput: string="" ;
   name:any;
+  chatMessage: ChatMessage | undefined;
+  chatMessageList : ChatMessage[] = [];
   constructor(
     private websocketService: WebSocketService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private chatService: ChatService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +33,8 @@ export class ChatAppSocketComponent implements OnInit {
 
     //const message = `Message generated at ${new Date()}`;
     console.log('sjshsh');
-    this.websocketService.publish({ destination: '/app/chat', body: JSON.stringify(ChatMessage) });
+    //this.websocketService.publish({ destination: '/app/chat', body: JSON.stringify(ChatMessage) });
+    this.chatService.publishChatMessage(chatMessage);
   }
   // Example method to receive data from the server
 
@@ -37,9 +42,21 @@ export class ChatAppSocketComponent implements OnInit {
   subscribeToTopic() {
     this.websocketService.watch('/topic/group').subscribe((message) => {
       // Handle incoming messages here
-      const messag = this.arrayBufferToString(message.binaryBody);
+      const msg = this.arrayBufferToString(message.binaryBody);
       //String.fromCharCode.apply(null, message._binaryBody)
-      console.log('Received message:', messag);
+      const jsonChatObject = JSON.parse(msg);
+
+      this.chatMessage = jsonChatObject;
+      if(this.chatMessage){
+      if(this.name === this.chatMessage.sender){
+        this.chatMessage.sender = "you";
+      }
+      this.chatMessageList.push(this.chatMessage);
+      }
+
+      console.log('Received message:', this.chatMessage);
+
+
     });
   }
   arrayBufferToString(buffer: ArrayBuffer):string {

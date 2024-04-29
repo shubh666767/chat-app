@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { rxStompServiceFactory } from './rx-stomp-service-factory';
 import { WebSocketService } from './web-socket.service';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     {
